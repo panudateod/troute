@@ -1,0 +1,64 @@
+html, body, #root {
+  height: 100%;
+}
+
+.inner-inline * {
+  display: inline-block;
+}
+
+
+.inner-inline label,
+.inner-inline div:has(>input) {
+  margin-right: 10px;
+}
+.inner-inline label {
+  padding-left: 0;
+}
+
+.rjsf h5 {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+.rjsf legend {
+  font-size: 1em;
+  display: table;
+  padding: 0;
+}
+.rjsf fieldset {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+  padding: 0.01em 0 0 0;
+}
+.rjsf fieldset {
+
+}
+
+body:not(:-moz-handler-blocked) .rjsf fieldset {
+  display: table-cell;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+.rjsf td label {
+  display: none;
+}
+
+/* .mantine-Checkbox-root input:disabled:not([readonly]) {
+  background-color: var(--mantine-color-gray-2);
+  border-color: var(--mantine-color-gray-3);
+  cursor: not-allowed;
+  background-color: var(--mantine-color-white);
+  border-color: var(--mantine-color-gray-4);
+
+  label {
+    color: var(--mantine-color-text);
+  }
+} */
+
+/* .rjsf .mantine-Checkbox-root input[checked]input[disabled]:not(input[readonly]) {
+  background-color: var(--checkbox-color);
+  border-color: var(--checkbox-color);
+} */
