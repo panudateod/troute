@@ -33,7 +33,7 @@ export default function DepartmentList(indexRoute: Route) {
         <Table>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>ชื่อโครงการ</Table.Th>
+              <Table.Th>ชื่อสำนัก</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>

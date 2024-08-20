@@ -4,7 +4,7 @@ import { createRoute, Link, Route } from "@tanstack/react-router"
 export default function ProposalDetail(parentRoute: Route) {
   const detailRoute = createRoute({
     getParentRoute: () => parentRoute,
-    path: `/$proposalId`,
+    path: `$proposalId`,
     component: Comp,
   })
   console.log("detailRoute", detailRoute)
