@@ -1,8 +1,9 @@
 import App from "@/App"
 import "@mantine/core/styles.css"
 import { createRoute, Route } from "@tanstack/react-router"
-import DepartmentDetail from "./components/departments/DepartmentDetail"
 import DepartmentList from "./components/departments/DepartmentList"
+import DepartmentOverview from "./components/departments/DepartmentOverview"
+import DepartmentSettings from "./components/departments/DepartmentSettings"
 import DepartmentLayout from "./components/layouts/DepartmentLayout"
 import ProposalDetail from "./components/proposals/ProposalDetail"
 import ProposalJobList from "./components/proposals/ProposalJobList"
@@ -30,10 +31,10 @@ const departmentIndexRoute = createRoute({
   getParentRoute: () => D,
   path: "d",
 }) as unknown as Route
-const departmentDetailRoute = DepartmentDetail(departmentIndexRoute)
 departmentIndexRoute.addChildren([
   DepartmentList(departmentIndexRoute),
-  departmentDetailRoute,
+  DepartmentOverview(departmentIndexRoute),
+  DepartmentSettings(departmentIndexRoute),
 ])
 
 // All proposals

@@ -16,11 +16,11 @@ function getProposals() {
   return mockProposals
 }
 
-export default function ProposalList(indexRoute: Route) {
+export default function ProposalList(parentRoute: Route) {
   // const job = "screening" // TODO: find job from url
 
   const listRoute = createRoute({
-    getParentRoute: () => indexRoute,
+    getParentRoute: () => parentRoute,
     path: "/",
     component: Comp,
   })
@@ -28,6 +28,7 @@ export default function ProposalList(indexRoute: Route) {
   function Comp() {
     const proposals = getProposals()
     const headerFields = allFieldsList
+    const { departmentId } = listRoute.useParams()
 
     return (
       <>
@@ -43,7 +44,11 @@ export default function ProposalList(indexRoute: Route) {
           </Table.Thead>
           <Table.Tbody>
             {proposals.map((item) => (
-              <ProposalItem key={item.id} item={item} departmentId={1} />
+              <ProposalItem
+                key={item.id}
+                item={item}
+                departmentId={departmentId}
+              />
             ))}
           </Table.Tbody>
         </Table>

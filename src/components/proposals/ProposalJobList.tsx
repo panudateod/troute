@@ -28,6 +28,7 @@ export default function ProposalJobList(parentRoute: Route, job: JobType) {
   function Comp() {
     const proposals = getProposals()
     const headerFields = job.fields
+    const { departmentId } = listRoute.useParams()
 
     return (
       <Table>
@@ -44,7 +45,7 @@ export default function ProposalJobList(parentRoute: Route, job: JobType) {
             <ProposalItem
               key={item.id}
               item={item}
-              departmentId={1}
+              departmentId={departmentId}
               job={job}
             />
           ))}

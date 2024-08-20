@@ -12,6 +12,9 @@ export default function DepartmentItem({ item }: { item: DepartmentItemType }) {
       <Table.Td>
         <Link to={`/d/${item.id}`}>{item.name}</Link>
       </Table.Td>
+      <Table.Td>
+        <Link to={`/d/${item.id}/settings`}>{`ตั้งต่า`}</Link>
+      </Table.Td>
     </Table.Tr>
   )
 }

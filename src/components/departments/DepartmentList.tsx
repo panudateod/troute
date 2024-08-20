@@ -1,6 +1,6 @@
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
-import ProposalItem, { DepartmentItemType } from "./DepartmentItem"
+import DepartmentItem, { DepartmentItemType } from "./DepartmentItem"
 
 function getDepartments() {
   const mockProposals: DepartmentItemType[] = Array.from({ length: 10 }).map(
@@ -34,11 +34,12 @@ export default function DepartmentList(indexRoute: Route) {
           <Table.Thead>
             <Table.Tr>
               <Table.Th>ชื่อสำนัก</Table.Th>
+              <Table.Th></Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
             {proposals.map((item) => (
-              <ProposalItem key={item.id} item={item} />
+              <DepartmentItem key={item.id} item={item} />
             ))}
           </Table.Tbody>
         </Table>

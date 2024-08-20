@@ -1,10 +1,10 @@
 import { AppShell, Box } from "@mantine/core"
 import { createRoute, Link, Route } from "@tanstack/react-router"
 
-export default function DepartmentDetail(parentRoute: Route) {
+export default function DepartmentSettings(parentRoute: Route) {
   const detailRoute = createRoute({
     getParentRoute: () => parentRoute,
-    path: `$departmentId`,
+    path: `$departmentId/settings`,
     component: Comp,
   })
 
@@ -35,7 +35,7 @@ export default function DepartmentDetail(parentRoute: Route) {
           Department Header
         </AppShell.Header>
         <AppShell.Main>
-          <h1>Department Detail</h1>
+          <h1>Department Settings</h1>
         </AppShell.Main>
       </AppShell>
     )
