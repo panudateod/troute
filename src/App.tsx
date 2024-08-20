@@ -24,7 +24,7 @@ export default function App() {
           </Box>
           <hr />
           <Box bg="blue.3" p="md" mb="xs">
-            Proposals [all]
+            <Link to="/proposals/all">Proposals [all]</Link>
           </Box>
           <Box bg="blue.3" p="md" mb="xs">
             <Link

@@ -1,9 +1,9 @@
 import App from "@/App"
 import "@mantine/core/styles.css"
-import { createRootRoute, createRoute } from "@tanstack/react-router"
+import { createRootRoute, createRoute, Route } from "@tanstack/react-router"
 import ProposalDetail from "./components/ProposalDetail"
-import { configFields, JobType } from "./components/ProposalItem"
-import ProposalList from "./components/ProposalList"
+import { jobFieldsMap, JobType } from "./components/ProposalItem"
+import ProposalJobList from "./components/ProposalJobList"
 
 const rootRoute = createRootRoute({
   component: App,
@@ -21,29 +21,20 @@ const indexRoute = createRoute({
   },
 })
 
-const proposalListPaths = Object.keys(configFields) as JobType[]
+const proposalListJobs = Object.keys(jobFieldsMap) as JobType[]
 
-const proposalRoutes = proposalListPaths.map((path) => {
-  const proposalRoute = createRoute({
+const proposalRoutes = proposalListJobs.map((job) => {
+  const jobRoute = createRoute({
     getParentRoute: () => rootRoute,
-    path: `/proposals/${path}`,
-  })
+    path: `/proposals/${job}`,
+  }) as unknown as Route
 
-  const indexRoute = createRoute({
-    getParentRoute: () => proposalRoute,
-    path: "/",
-    component: ProposalList(path),
-  })
+  const listRoute = ProposalJobList(jobRoute, job)
+  const detailRoute = ProposalDetail(jobRoute)
 
-  const detailRoute = createRoute({
-    getParentRoute: () => proposalRoute,
-    path: `$proposalId`,
-    component: ProposalDetail(indexRoute),
-  })
+  jobRoute.addChildren([listRoute, detailRoute])
 
-  proposalRoute.addChildren([indexRoute, detailRoute])
-
-  return proposalRoute
+  return jobRoute
 })
 
 const routeTree = rootRoute.addChildren([indexRoute, ...proposalRoutes])

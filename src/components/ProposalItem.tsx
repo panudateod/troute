@@ -1,17 +1,54 @@
 import { Table } from "@mantine/core"
 import { Link } from "@tanstack/react-router"
 
-export const configFields = {
-  screening: ["select TOR", "screening status", "screening file"],
-  assessment: ["assessment status", "assessment score"],
-}
+export const jobFieldsList = [
+  {
+    path: "screening",
+    fields: [
+      {
+        code: "selectTOR",
+        label: <>select TOR</>,
+        comp: <>select TOR</>, // import from another file
+      },
+      {
+        code: "screeningStatus",
+        label: <>screening status</>,
+        comp: <>screening status</>, // import from another file
+      },
+      {
+        code: "screeningFile",
+        label: <>screening file</>,
+        comp: <>screening file</>, // import from another file
+      },
+    ],
+  },
+  {
+    path: "assessment",
+    fields: [
+      {
+        code: "assessmentStatus",
+        label: <>assessment status</>,
+        comp: <>assessment status</>, // import from another file
+      },
+      {
+        code: "assessmentScore",
+        label: <>assessment score</>,
+        comp: <>assessment score</>, // import from another file
+      },
+    ],
+  },
+]
+
+export const jobFieldsMap = Object.fromEntries(
+  jobFieldsList.map((job) => [job.path, job]),
+)
 
 export type ProposalItemType = {
   id: number
   name: string
 }
 
-export type JobType = keyof typeof configFields
+export type JobType = keyof typeof jobFieldsMap
 
 export default function ProposalItem({
   item,
@@ -20,7 +57,7 @@ export default function ProposalItem({
   item: ProposalItemType
   job: JobType
 }) {
-  const displayFields = configFields[job]
+  const displayFields = jobFieldsMap[job].fields
 
   return (
     <Table.Tr>
@@ -28,7 +65,7 @@ export default function ProposalItem({
         <Link to={`/proposals/${job}/${item.id}`}>{item.name}</Link>
       </Table.Td>
       {displayFields.map((field) => (
-        <Table.Td key={field}>{field}</Table.Td>
+        <Table.Td key={field.code}>{field.comp}</Table.Td>
       ))}
     </Table.Tr>
   )

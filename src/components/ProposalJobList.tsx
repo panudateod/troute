@@ -1,12 +1,13 @@
 import { Table } from "@mantine/core"
+import { createRoute, Route } from "@tanstack/react-router"
 import ProposalItem, {
+  jobFieldsMap,
   JobType,
   ProposalItemType,
-  configFields,
 } from "./ProposalItem"
 
 function getProposals() {
-  const mockProposals: ProposalItemType[] = Array.from({ length: 10 }).map(
+  const mockProposals: ProposalItemType[] = Array.from({ length: 50 }).map(
     (_, index) => ({
       id: index + 1,
       name: `Proposal ${index + 1}`,
@@ -18,19 +19,26 @@ function getProposals() {
   return mockProposals
 }
 
-export default function ProposalList(job: JobType) {
+export default function ProposalJobList(jobRoute: Route, job: JobType) {
   // const job = "screening" // TODO: find job from url
 
-  return function Comp() {
+  const listRoute = createRoute({
+    getParentRoute: () => jobRoute,
+    path: "/",
+    component: Comp,
+  })
+
+  function Comp() {
     const proposals = getProposals()
-    const displayFields = configFields[job]
+    const headerFields = jobFieldsMap[job].fields
+
     return (
       <Table>
         <Table.Thead>
           <Table.Tr>
             <Table.Th>ชื่อโครงการ</Table.Th>
-            {displayFields.map((field) => (
-              <Table.Th key={field}>{field}</Table.Th>
+            {headerFields.map((field) => (
+              <Table.Th key={field.code}>{field.label}</Table.Th>
             ))}
           </Table.Tr>
         </Table.Thead>
@@ -42,4 +50,6 @@ export default function ProposalList(job: JobType) {
       </Table>
     )
   }
+
+  return listRoute
 }

@@ -1,10 +1,15 @@
 import { AppShell, Box } from "@mantine/core"
-import { Link } from "@tanstack/react-router"
+import { createRoute, Link, Route } from "@tanstack/react-router"
 
-export default function ProposalDetail(listRoute: unknown) {
-  console.log(listRoute)
+export default function ProposalDetail(jobRoute: Route) {
+  const detailRoute = createRoute({
+    getParentRoute: () => jobRoute,
+    path: `/$proposalId`,
+    component: Comp,
+  })
+  console.log(jobRoute)
 
-  return function Comp() {
+  function Comp() {
     return (
       <AppShell layout="alt">
         <AppShell.Navbar>
@@ -17,7 +22,7 @@ export default function ProposalDetail(listRoute: unknown) {
         </AppShell.Navbar>
         <AppShell.Header bg="red.3">
           <Box ml="xxl">
-            <Link to={listRoute.fullPath} resetScroll={false}>
+            <Link to={jobRoute.fullPath} resetScroll={false}>
               X
             </Link>
           </Box>
@@ -29,4 +34,6 @@ export default function ProposalDetail(listRoute: unknown) {
       </AppShell>
     )
   }
+
+  return detailRoute
 }
