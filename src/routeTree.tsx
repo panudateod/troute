@@ -22,9 +22,11 @@ const indexRoute = createRoute({
   },
 })
 
-const proposalListJobs = jobFieldsList.map((job) => job.path)
-
-let proposalRoutes: Route[] = []
+// // All departments
+// const departmentIndexRoute = createRoute({
+//   getParentRoute: () => rootRoute,
+//   path: "/d",
+// }) as unknown as Route
 
 // All proposals
 const proposalIndexRoute = createRoute({
@@ -37,20 +39,18 @@ proposalIndexRoute.addChildren([
 ])
 
 // Proposals by jobs
-proposalRoutes = proposalRoutes.concat(
-  proposalListJobs.map((job) => {
-    const jobRoute = createRoute({
-      getParentRoute: () => rootRoute,
-      path: `/proposals/${job}`,
-    }) as unknown as Route
-    jobRoute.addChildren([
-      ProposalJobList(jobRoute, job), // use ProposalJobList instead of ProposalList
-      ProposalDetail(jobRoute),
-    ])
+const proposalRoutes: Route[] = jobFieldsList.map((job) => {
+  const jobRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: `/proposals/${job.path}`,
+  }) as unknown as Route
+  jobRoute.addChildren([
+    ProposalJobList(jobRoute, job), // use ProposalJobList instead of ProposalList
+    ProposalDetail(jobRoute),
+  ])
 
-    return jobRoute
-  }),
-)
+  return jobRoute
+})
 
 const routeTree = rootRoute.addChildren([
   indexRoute,

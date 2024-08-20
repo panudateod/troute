@@ -7,14 +7,22 @@ export default function ProposalDetail(parentRoute: Route) {
     path: `/$proposalId`,
     component: Comp,
   })
-  console.log(parentRoute)
+  console.log("detailRoute", detailRoute)
 
   function Comp() {
+    console.log("detailRoute.to", detailRoute.to, detailRoute.fullPath)
     return (
-      <AppShell layout="alt">
+      <AppShell
+        layout="alt"
+        navbar={{
+          width: 100,
+          breakpoint: "sm",
+        }}
+        padding="md"
+      >
         <AppShell.Navbar>
           <Box bg="blue.3" p="md" mb="xs">
-            <Link to="/proposals/screening">งาน</Link>
+            <Link to={""}>งาน</Link>
           </Box>
           <Box bg="blue.3" p="md" mb="xs">
             <Link to="/proposals/assessment">เงิน</Link>

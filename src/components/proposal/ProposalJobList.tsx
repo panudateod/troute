@@ -1,7 +1,7 @@
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
-import ProposalItem, { JobType, ProposalItemType } from "./ProposalItem"
-import { jobFieldsMap } from "./fields"
+import ProposalItem, { ProposalItemType } from "./ProposalItem"
+import { JobType } from "./fields"
 
 function getProposals() {
   const mockProposals: ProposalItemType[] = Array.from({ length: 50 }).map(
@@ -27,7 +27,7 @@ export default function ProposalJobList(parentRoute: Route, job: JobType) {
 
   function Comp() {
     const proposals = getProposals()
-    const headerFields = jobFieldsMap[job].fields
+    const headerFields = job.fields
 
     return (
       <Table>
