@@ -9,7 +9,7 @@ export type JobType = {
   fields: JobFieldType[]
 }
 
-export const jobFieldsList: JobType[] = [
+export const jobFieldList: JobType[] = [
   {
     path: "screening",
     fields: [
@@ -47,7 +47,7 @@ export const jobFieldsList: JobType[] = [
   },
 ]
 
-export const allFieldsList = jobFieldsList.map((job) => job.fields).flat()
+export const allFieldsList = jobFieldList.map((job) => job.fields).flat()
 
 // export const jobFieldsMap = Object.fromEntries(
 //   jobFieldsList.map((job) => [job.path, job]),

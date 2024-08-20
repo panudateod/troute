@@ -1,13 +1,12 @@
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
-import ProposalItem, { ProposalItemType } from "./ProposalItem"
-import { allFieldsList } from "./fields"
+import ProposalItem, { DepartmentItemType } from "./DepartmentItem"
 
-function getProposals() {
-  const mockProposals: ProposalItemType[] = Array.from({ length: 50 }).map(
+function getDepartments() {
+  const mockProposals: DepartmentItemType[] = Array.from({ length: 10 }).map(
     (_, index) => ({
       id: index + 1,
-      name: `Proposal ${index + 1}`,
+      name: `Department ${index + 1}`,
     }),
   )
 
@@ -16,7 +15,7 @@ function getProposals() {
   return mockProposals
 }
 
-export default function ProposalList(indexRoute: Route) {
+export default function DepartmentList(indexRoute: Route) {
   // const job = "screening" // TODO: find job from url
 
   const listRoute = createRoute({
@@ -26,8 +25,7 @@ export default function ProposalList(indexRoute: Route) {
   })
 
   function Comp() {
-    const proposals = getProposals()
-    const headerFields = allFieldsList
+    const proposals = getDepartments()
 
     return (
       <>
@@ -36,9 +34,6 @@ export default function ProposalList(indexRoute: Route) {
           <Table.Thead>
             <Table.Tr>
               <Table.Th>ชื่อโครงการ</Table.Th>
-              {headerFields.map((field) => (
-                <Table.Th key={field.code}>{field.label}</Table.Th>
-              ))}
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>

@@ -41,7 +41,12 @@ export default function ProposalJobList(parentRoute: Route, job: JobType) {
         </Table.Thead>
         <Table.Tbody>
           {proposals.map((item) => (
-            <ProposalItem key={item.id} item={item} job={job} />
+            <ProposalItem
+              key={item.id}
+              item={item}
+              departmentId={1}
+              job={job}
+            />
           ))}
         </Table.Tbody>
       </Table>
