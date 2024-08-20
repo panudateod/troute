@@ -1,13 +1,13 @@
 import { AppShell, Box } from "@mantine/core"
 import { createRoute, Link, Route } from "@tanstack/react-router"
 
-export default function ProposalDetail(jobRoute: Route) {
+export default function ProposalDetail(parentRoute: Route) {
   const detailRoute = createRoute({
-    getParentRoute: () => jobRoute,
+    getParentRoute: () => parentRoute,
     path: `/$proposalId`,
     component: Comp,
   })
-  console.log(jobRoute)
+  console.log(parentRoute)
 
   function Comp() {
     return (
@@ -22,7 +22,7 @@ export default function ProposalDetail(jobRoute: Route) {
         </AppShell.Navbar>
         <AppShell.Header bg="red.3">
           <Box ml="xxl">
-            <Link to={jobRoute.fullPath} resetScroll={false}>
+            <Link to={parentRoute.fullPath} resetScroll={false}>
               X
             </Link>
           </Box>

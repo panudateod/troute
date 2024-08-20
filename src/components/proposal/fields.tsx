@@ -1,6 +1,3 @@
-import { Table } from "@mantine/core"
-import { Link } from "@tanstack/react-router"
-
 export const jobFieldsList = [
   {
     path: "screening",
@@ -43,30 +40,4 @@ export const jobFieldsMap = Object.fromEntries(
   jobFieldsList.map((job) => [job.path, job]),
 )
 
-export type ProposalItemType = {
-  id: number
-  name: string
-}
-
-export type JobType = keyof typeof jobFieldsMap
-
-export default function ProposalItem({
-  item,
-  job,
-}: {
-  item: ProposalItemType
-  job: JobType
-}) {
-  const displayFields = jobFieldsMap[job].fields
-
-  return (
-    <Table.Tr>
-      <Table.Td>
-        <Link to={`/proposals/${job}/${item.id}`}>{item.name}</Link>
-      </Table.Td>
-      {displayFields.map((field) => (
-        <Table.Td key={field.code}>{field.comp}</Table.Td>
-      ))}
-    </Table.Tr>
-  )
-}
+export const allFieldsList = jobFieldsList.map((job) => job.fields).flat()

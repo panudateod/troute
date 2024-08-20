@@ -1,9 +1,10 @@
 import App from "@/App"
 import "@mantine/core/styles.css"
 import { createRootRoute, createRoute, Route } from "@tanstack/react-router"
-import ProposalDetail from "./components/ProposalDetail"
-import { jobFieldsMap, JobType } from "./components/ProposalItem"
-import ProposalJobList from "./components/ProposalJobList"
+import ProposalDetail from "./components/proposal/ProposalDetail"
+import ProposalJobList from "./components/proposal/ProposalJobList"
+import ProposalList from "./components/proposal/ProposalList"
+import { jobFieldsList } from "./components/proposal/fields"
 
 const rootRoute = createRootRoute({
   component: App,
@@ -21,21 +22,37 @@ const indexRoute = createRoute({
   },
 })
 
-const proposalListJobs = Object.keys(jobFieldsMap) as JobType[]
+const proposalListJobs = jobFieldsList.map((job) => job.path)
 
-const proposalRoutes = proposalListJobs.map((job) => {
-  const jobRoute = createRoute({
-    getParentRoute: () => rootRoute,
-    path: `/proposals/${job}`,
-  }) as unknown as Route
+let proposalRoutes: Route[] = []
 
-  const listRoute = ProposalJobList(jobRoute, job)
-  const detailRoute = ProposalDetail(jobRoute)
+const proposalIndexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/proposals",
+}) as unknown as Route
+const proposalListRoute = ProposalList(proposalIndexRoute)
+const proposalDetailRoute = ProposalDetail(proposalIndexRoute)
+proposalIndexRoute.addChildren([proposalListRoute, proposalDetailRoute])
 
-  jobRoute.addChildren([listRoute, detailRoute])
+proposalRoutes = proposalRoutes.concat(
+  proposalListJobs.map((job) => {
+    const jobRoute = createRoute({
+      getParentRoute: () => rootRoute,
+      path: `/proposals/${job}`,
+    }) as unknown as Route
 
-  return jobRoute
-})
+    const listRoute = ProposalJobList(jobRoute, job)
+    const detailRoute = ProposalDetail(jobRoute)
 
-const routeTree = rootRoute.addChildren([indexRoute, ...proposalRoutes])
+    jobRoute.addChildren([listRoute, detailRoute])
+
+    return jobRoute
+  }),
+)
+
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  proposalIndexRoute,
+  ...proposalRoutes,
+])
 export default routeTree
