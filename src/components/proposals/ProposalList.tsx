@@ -1,7 +1,8 @@
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
-import ProposalItem, { ProposalItemType } from "./ProposalItem"
+import ProposalItem from "./ProposalItem"
 import { allFieldsList } from "./fields"
+import { ProposalItemType } from "./types"
 
 function getProposals() {
   const mockProposals: ProposalItemType[] = Array.from({ length: 50 }).map(

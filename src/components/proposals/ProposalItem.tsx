@@ -1,24 +1,20 @@
 import { Table } from "@mantine/core"
 import { Link } from "@tanstack/react-router"
 import { allFieldsList, JobType } from "./fields"
+import { ProposalItemType } from "./types"
 
-export type ProposalItemType = {
-  id: number
-  name: string
-}
-
-type proposalItemProps = {
+type Props = {
   item: ProposalItemType
   departmentId: number
   job?: JobType
 }
 
-function getItemUrl(props: proposalItemProps) {
+function getItemUrl(props: Props) {
   const { item, departmentId, job } = props
   return `/d/${departmentId}/proposals/${job ? `${job.path}/` : ""}${item.id}`
 }
 
-export default function ProposalItem(props: proposalItemProps) {
+export default function ProposalItem(props: Props) {
   const { item, job } = props
 
   const displayFields = job ? job.fields : allFieldsList
