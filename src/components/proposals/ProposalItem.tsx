@@ -1,6 +1,7 @@
+import { ProposalJobType } from "@/libs/jobs/proposalJobs.types"
 import { Table } from "@mantine/core"
 import { Link } from "@tanstack/react-router"
-import { ProposalItemType, ProposalJobType } from "./types"
+import { ProposalItemType } from "./types"
 
 type Props = {
   item: ProposalItemType
@@ -11,7 +12,7 @@ type Props = {
 function getItemUrl(props: Props) {
   const { item, departmentId, job } = props
   // TODO: check case contract proposal append /i after $proposalId
-  return `/d/${departmentId}/proposals/${job ? `${job.path}/` : ""}${item.id}`
+  return `/d/${departmentId}/proposals/${job.path ? `${job.path}/` : ""}${item.id}`
 }
 
 export default function ProposalItem(props: Props) {

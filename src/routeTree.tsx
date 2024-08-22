@@ -8,7 +8,7 @@ import DepartmentLayout from "./components/layouts/DepartmentLayout"
 import ProposalDetail from "./components/proposals/ProposalDetail"
 import ProposalJobList from "./components/proposals/ProposalJobList"
 import ProposalList from "./components/proposals/ProposalList"
-import { proposalJobs } from "./components/proposals/fields"
+import { proposalJobs } from "./libs/jobs/proposalJobs"
 
 const rootRoute = App()
 

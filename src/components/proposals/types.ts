@@ -3,17 +3,6 @@ export type ProposalItemType = {
   name: string
 }
 
-export type ProposalJobPath =
-  | "screening"
-  | "assessment"
-  | "improvement"
-  | "payment-term"
-  | "document-follow-up"
-  | "contract"
-  | "contract-ready"
-  | "contract-approved"
-  | "approval"
-
 export type ProposalItemFieldCode =
   | "|" // spliter field
   | "tor"
@@ -45,15 +34,4 @@ export type ProposalItemFieldType = {
   label: JSX.Element
   comp: (item: ProposalItemType) => JSX.Element
   inActive?: boolean
-}
-export type _ProposalJobType = {
-  path: ProposalJobPath
-  fields: ProposalItemFieldCode[]
-  majorFields?: ProposalItemFieldCode[]
-}
-
-export type ProposalJobType = {
-  path?: ProposalJobPath
-  fields: ProposalItemFieldType[]
-  majorFields?: ProposalItemFieldCode[]
 }

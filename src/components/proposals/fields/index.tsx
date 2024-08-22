@@ -1,13 +1,8 @@
 import { Button, FileInput, Input, Select } from "@mantine/core"
 import { Link } from "@tanstack/react-router"
-import {
-  ProposalItemFieldType,
-  ProposalJobPath,
-  ProposalJobType,
-  _ProposalJobType,
-} from "../types"
+import { ProposalItemFieldType } from "../types"
 
-const proposalItemDefinationFields: ProposalItemFieldType[] = [
+export const proposalItemDefinationFields: ProposalItemFieldType[] = [
   {
     code: "tor",
     label: <>TOR</>,
@@ -249,16 +244,12 @@ function getFieldsByJob(job: _ProposalJobType) {
   )
 }
 
-export const proposalJobs: ProposalJobType[] = [
-  { fields: proposalItemDefinationFields },
-  ..._proposalJobs.map((job) => ({
-    path: job.path,
-    fields: getFieldsByJob(job),
-  })),
-]
+export const proposalJobs: ProposalJobType[] = _proposalJobs.map((job) => ({
+  path: job.path,
+  fields: getFieldsByJob(job),
+}))
 
 // const proposalJobsMap = Object.fromEntries(proposalJobs.map((job) => [job.path, job]))
-
-export function getProposalJobByPath(path?: ProposalJobPath): ProposalJobType {
-  return proposalJobs.find((job) => job.path === path)!
+export const proposalAllJob: ProposalJobType = {
+  fields: proposalItemDefinationFields,
 }

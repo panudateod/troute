@@ -1,6 +1,6 @@
+import { proposalAllJob } from "@/libs/jobs/proposalJobs"
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
-import { getProposalJobByPath } from "./fields"
 import ProposalItem from "./ProposalItem"
 import { ProposalItemType } from "./types"
 
@@ -28,7 +28,7 @@ export default function ProposalList(parentRoute: Route) {
 
   function Comp() {
     const proposals = getProposals()
-    const job = getProposalJobByPath()
+    const job = proposalAllJob
     const headerFields = job.fields
     const { departmentId } = listRoute.useParams()
 

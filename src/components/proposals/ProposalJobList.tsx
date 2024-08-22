@@ -1,7 +1,8 @@
+import { ProposalJobType } from "@/libs/jobs/proposalJobs.types"
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
 import ProposalItem from "./ProposalItem"
-import { ProposalItemType, ProposalJobType } from "./types"
+import { ProposalItemType } from "./types"
 
 function getProposals() {
   const mockProposals: ProposalItemType[] = Array.from({ length: 50 }).map(
