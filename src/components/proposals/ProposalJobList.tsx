@@ -1,8 +1,7 @@
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
-import { JobType } from "./fields"
 import ProposalItem from "./ProposalItem"
-import { ProposalItemType } from "./types"
+import { ProposalItemType, ProposalJobType } from "./types"
 
 function getProposals() {
   const mockProposals: ProposalItemType[] = Array.from({ length: 50 }).map(
@@ -17,7 +16,10 @@ function getProposals() {
   return mockProposals
 }
 
-export default function ProposalJobList(parentRoute: Route, job: JobType) {
+export default function ProposalJobList(
+  parentRoute: Route,
+  job: ProposalJobType,
+) {
   // const job = "screening" // TODO: find job from url
 
   const listRoute = createRoute({
@@ -32,26 +34,28 @@ export default function ProposalJobList(parentRoute: Route, job: JobType) {
     const { departmentId } = listRoute.useParams()
 
     return (
-      <Table>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>ชื่อโครงการ</Table.Th>
-            {headerFields.map((field) => (
-              <Table.Th key={field.code}>{field.label}</Table.Th>
+      <>
+        <Table>
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>ชื่อโครงการ</Table.Th>
+              {headerFields.map((field) => (
+                <Table.Th key={field.code}>{field.label}</Table.Th>
+              ))}
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            {proposals.map((item) => (
+              <ProposalItem
+                key={item.id}
+                item={item}
+                departmentId={departmentId}
+                job={job}
+              />
             ))}
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {proposals.map((item) => (
-            <ProposalItem
-              key={item.id}
-              item={item}
-              departmentId={departmentId}
-              job={job}
-            />
-          ))}
-        </Table.Tbody>
-      </Table>
+          </Table.Tbody>
+        </Table>
+      </>
     )
   }
 

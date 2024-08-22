@@ -1,23 +1,21 @@
 import { Table } from "@mantine/core"
 import { Link } from "@tanstack/react-router"
-import { allFieldsList, JobType } from "./fields"
-import { ProposalItemType } from "./types"
+import { ProposalItemType, ProposalJobType } from "./types"
 
 type Props = {
   item: ProposalItemType
   departmentId: number
-  job?: JobType
+  job: ProposalJobType
 }
 
 function getItemUrl(props: Props) {
   const { item, departmentId, job } = props
+  // TODO: check case contract proposal append /i after $proposalId
   return `/d/${departmentId}/proposals/${job ? `${job.path}/` : ""}${item.id}`
 }
 
 export default function ProposalItem(props: Props) {
   const { item, job } = props
-
-  const displayFields = job ? job.fields : allFieldsList
 
   // TODO: check case has conteact proposal append /i after $proposalId
   return (
@@ -25,8 +23,8 @@ export default function ProposalItem(props: Props) {
       <Table.Td>
         <Link to={getItemUrl(props)}>{item.name}</Link>
       </Table.Td>
-      {displayFields.map((field) => (
-        <Table.Td key={field.code}>{field.comp}</Table.Td>
+      {job.fields.map((field) => (
+        <Table.Td key={field.code}>{field.comp(item)}</Table.Td>
       ))}
     </Table.Tr>
   )

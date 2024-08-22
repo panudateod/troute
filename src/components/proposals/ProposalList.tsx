@@ -1,7 +1,7 @@
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
+import { getProposalJobByPath } from "./fields"
 import ProposalItem from "./ProposalItem"
-import { allFieldsList } from "./fields"
 import { ProposalItemType } from "./types"
 
 function getProposals() {
@@ -28,12 +28,13 @@ export default function ProposalList(parentRoute: Route) {
 
   function Comp() {
     const proposals = getProposals()
-    const headerFields = allFieldsList
+    const job = getProposalJobByPath()
+    const headerFields = job.fields
     const { departmentId } = listRoute.useParams()
 
     return (
       <>
-        <h3>Header Filter by status</h3>
+        <h1>Header, filter by jobs</h1>
         <Table>
           <Table.Thead>
             <Table.Tr>
@@ -49,6 +50,7 @@ export default function ProposalList(parentRoute: Route) {
                 key={item.id}
                 item={item}
                 departmentId={departmentId}
+                job={job}
               />
             ))}
           </Table.Tbody>

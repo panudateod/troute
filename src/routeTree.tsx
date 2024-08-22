@@ -8,7 +8,7 @@ import DepartmentLayout from "./components/layouts/DepartmentLayout"
 import ProposalDetail from "./components/proposals/ProposalDetail"
 import ProposalJobList from "./components/proposals/ProposalJobList"
 import ProposalList from "./components/proposals/ProposalList"
-import { jobFieldList as proposalJobFieldList } from "./components/proposals/fields"
+import { proposalJobs } from "./components/proposals/fields"
 
 const rootRoute = App()
 
@@ -48,7 +48,7 @@ proposalIndexRoute.addChildren([
 ])
 
 // Proposals by jobs
-const proposalRoutes: Route[] = proposalJobFieldList.map((job) => {
+const proposalRoutes: Route[] = proposalJobs.map((job) => {
   const jobRoute = createRoute({
     getParentRoute: () => D,
     path: `d/$departmentId/proposals/${job.path}`,
