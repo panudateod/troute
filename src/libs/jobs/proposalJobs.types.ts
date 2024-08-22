@@ -3,7 +3,7 @@ import {
   ProposalItemFieldType,
 } from "@/components/proposals/types"
 
-export type ProposalJobPath =
+export type JobPath =
   | "screening"
   | "assessment"
   | "improvement"
@@ -14,14 +14,14 @@ export type ProposalJobPath =
   | "contract-approved"
   | "approval"
 
-export type _ProposalJobType = {
-  path: ProposalJobPath
+export type DefinitionJobType = {
+  path: JobPath
   fields: ProposalItemFieldCode[]
   majorFields?: ProposalItemFieldCode[]
 }
 
 export type ProposalJobType = {
-  path?: ProposalJobPath
+  path?: JobPath
   fields: ProposalItemFieldType[]
   majorFields?: ProposalItemFieldCode[]
 }
