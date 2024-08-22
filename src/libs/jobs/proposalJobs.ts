@@ -56,7 +56,6 @@ export const proposalJobs: ProposalJobType[] = definitionJobs.map((job) => ({
   fields: job.fields.map((fieldCode) => definationFieldsMap[fieldCode]),
 }))
 
-// const proposalJobsMap = Object.fromEntries(proposalJobs.map((job) => [job.path, job]))
 export const proposalAllJob: ProposalJobType = {
   fields: definationFields,
 }
