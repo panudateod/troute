@@ -1,21 +1,8 @@
+import { getProposals } from "@/libs/mocks/proposals"
 import { proposalAllJob } from "@/routeTree/jobs/proposalJobs"
 import { Table } from "@mantine/core"
 import { createRoute, Route } from "@tanstack/react-router"
 import ProposalItem from "./ProposalItem"
-import { ProposalItemType } from "./types"
-
-function getProposals() {
-  const mockProposals: ProposalItemType[] = Array.from({ length: 50 }).map(
-    (_, index) => ({
-      id: index + 1,
-      name: `Proposal ${index + 1}`,
-    }),
-  )
-
-  // TODO: fetch proposals from API
-
-  return mockProposals
-}
 
 export default function ProposalList(parentRoute: Route) {
   // const job = "screening" // TODO: find job from url

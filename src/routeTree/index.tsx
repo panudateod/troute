@@ -3,6 +3,7 @@ import DepartmentList from "@/components/departments/DepartmentList"
 import DepartmentOverview from "@/components/departments/DepartmentOverview"
 import DepartmentSettings from "@/components/departments/DepartmentSettings"
 import DepartmentLayout from "@/components/layouts/DepartmentLayout"
+import ContractProposalDetail from "@/components/proposals/ContractProposalDetail"
 import ProposalDetail from "@/components/proposals/ProposalDetail"
 import ProposalJobList from "@/components/proposals/ProposalJobList"
 import ProposalList from "@/components/proposals/ProposalList"
@@ -45,6 +46,7 @@ const proposalIndexRoute = createRoute({
 proposalIndexRoute.addChildren([
   ProposalList(proposalIndexRoute),
   ProposalDetail(proposalIndexRoute),
+  ContractProposalDetail(proposalIndexRoute),
 ])
 
 // Proposals by jobs
@@ -56,6 +58,7 @@ const proposalRoutes: Route[] = proposalJobs.map((job) => {
   jobRoute.addChildren([
     ProposalJobList(jobRoute, job), // use ProposalJobList instead of ProposalList
     ProposalDetail(jobRoute),
+    ContractProposalDetail(jobRoute),
   ])
 
   return jobRoute

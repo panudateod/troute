@@ -1,6 +1,14 @@
 export type ProposalItemType = {
   id: number
-  name: string
+  proposal: {
+    name: string
+  }
+  contractProposal?: {
+    name: string
+  }
+  contract?: {
+    contractCode: string
+  }
 }
 
 export type ProposalItemFieldCode =
