@@ -1,14 +1,14 @@
 import App from "@/App"
+import DepartmentList from "@/components/departments/DepartmentList"
+import DepartmentOverview from "@/components/departments/DepartmentOverview"
+import DepartmentSettings from "@/components/departments/DepartmentSettings"
+import DepartmentLayout from "@/components/layouts/DepartmentLayout"
+import ProposalDetail from "@/components/proposals/ProposalDetail"
+import ProposalJobList from "@/components/proposals/ProposalJobList"
+import ProposalList from "@/components/proposals/ProposalList"
 import "@mantine/core/styles.css"
 import { createRoute, Route } from "@tanstack/react-router"
-import DepartmentList from "./components/departments/DepartmentList"
-import DepartmentOverview from "./components/departments/DepartmentOverview"
-import DepartmentSettings from "./components/departments/DepartmentSettings"
-import DepartmentLayout from "./components/layouts/DepartmentLayout"
-import ProposalDetail from "./components/proposals/ProposalDetail"
-import ProposalJobList from "./components/proposals/ProposalJobList"
-import ProposalList from "./components/proposals/ProposalList"
-import { proposalJobs } from "./libs/jobs/proposalJobs"
+import { proposalJobs } from "./jobs/proposalJobs"
 
 const rootRoute = App()
 
@@ -25,10 +25,10 @@ const indexRoute = createRoute({
 })
 
 // All departments
-const D = DepartmentLayout(rootRoute)
+const d = DepartmentLayout(rootRoute)
 
 const departmentIndexRoute = createRoute({
-  getParentRoute: () => D,
+  getParentRoute: () => d,
   path: "d",
 }) as unknown as Route
 departmentIndexRoute.addChildren([
@@ -39,7 +39,7 @@ departmentIndexRoute.addChildren([
 
 // All proposals
 const proposalIndexRoute = createRoute({
-  getParentRoute: () => D,
+  getParentRoute: () => d,
   path: "d/$departmentId/proposals",
 }) as unknown as Route
 proposalIndexRoute.addChildren([
@@ -50,7 +50,7 @@ proposalIndexRoute.addChildren([
 // Proposals by jobs
 const proposalRoutes: Route[] = proposalJobs.map((job) => {
   const jobRoute = createRoute({
-    getParentRoute: () => D,
+    getParentRoute: () => d,
     path: `d/$departmentId/proposals/${job.path}`,
   }) as unknown as Route
   jobRoute.addChildren([
@@ -63,7 +63,7 @@ const proposalRoutes: Route[] = proposalJobs.map((job) => {
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  D,
+  d,
   departmentIndexRoute,
   proposalIndexRoute,
   ...proposalRoutes,

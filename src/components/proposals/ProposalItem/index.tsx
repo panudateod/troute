@@ -1,4 +1,4 @@
-import { ProposalJobType } from "@/libs/jobs/proposalJobs.types"
+import { ProposalJobType } from "@/routeTree/jobs/proposalJobs.types"
 import { Table } from "@mantine/core"
 import { Link } from "@tanstack/react-router"
 import { ProposalItemType } from "./types"
