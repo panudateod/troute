@@ -8,7 +8,7 @@ export default function Content(parentRoute: Route) {
   })
 
   function Comp() {
-    return <h1>งาน</h1>
+    return <h1>ข้อเสนอฯ/คำรับรอง</h1>
   }
 
   return route

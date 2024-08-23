@@ -1,14 +1,14 @@
 import { createRoute, Route } from "@tanstack/react-router"
 
-export default function Contract(parentRoute: Route) {
+export default function Withdraw(parentRoute: Route) {
   const route = createRoute({
     getParentRoute: () => parentRoute,
-    path: `contract`,
+    path: `withdraw`,
     component: Comp,
   })
 
   function Comp() {
-    return <h1>เอกสารจัดทำสัญญา</h1>
+    return <h1>เบิกเงิน</h1>
   }
 
   return route

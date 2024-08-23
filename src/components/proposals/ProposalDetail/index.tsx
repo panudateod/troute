@@ -1,8 +1,9 @@
 import { createRoute, Route } from "@tanstack/react-router"
 import App from "./App"
 import Content from "./Content"
-import Contract from "./Contract"
+import ContractInfo from "./ContractInfo"
 import Finance from "./Finance"
+import ProposalNav from "./Nav"
 import Overview from "./Overview"
 
 export default function ProposalDetail(parentRoute: Route) {
@@ -16,11 +17,17 @@ export default function ProposalDetail(parentRoute: Route) {
     Overview(route),
     Content(route),
     Finance(route),
-    Contract(route),
+    ContractInfo(route),
   ])
 
   function Comp() {
-    return <App route={route} parentRoute={parentRoute} />
+    return (
+      <App
+        route={route}
+        parentRoute={parentRoute}
+        proposalNav={<ProposalNav route={route} />}
+      />
+    )
   }
 
   return route

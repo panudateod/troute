@@ -1,10 +1,14 @@
 import { AppShell, Box } from "@mantine/core"
 import { Link, Outlet, Route } from "@tanstack/react-router"
-import Nav from "./Nav"
 
-type Props = { route: Route; parentRoute: Route }
+type Props = {
+  route: Route
+  parentRoute: Route
+  proposalNav?: JSX.Element
+  contractNav?: JSX.Element
+}
 
-export default function App({ route, parentRoute }: Props) {
+export default function App({ parentRoute, proposalNav, contractNav }: Props) {
   return (
     <AppShell
       layout="alt"
@@ -15,7 +19,8 @@ export default function App({ route, parentRoute }: Props) {
       padding="md"
     >
       <AppShell.Navbar>
-        <Nav route={route} />
+        {proposalNav}
+        {contractNav}
       </AppShell.Navbar>
       <AppShell.Header bg="red.3">
         <Box ml="xxl">

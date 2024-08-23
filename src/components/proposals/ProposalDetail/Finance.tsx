@@ -8,7 +8,7 @@ export default function Finance(parentRoute: Route) {
   })
 
   function Comp() {
-    return <h1>เงิน</h1>
+    return <h1>แผนงบประมาณ</h1>
   }
 
   return route
