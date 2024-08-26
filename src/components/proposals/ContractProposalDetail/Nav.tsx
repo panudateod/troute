@@ -1,4 +1,4 @@
-import { Box, Center, Tooltip } from "@mantine/core"
+import { Box, Center, Menu, Tooltip } from "@mantine/core"
 import {
   IconAntennaBars3,
   IconCoinBitcoin,
@@ -16,37 +16,79 @@ export default function Nav({ route }: Props) {
       <Center>
         <Box>สัญญา</Box>
       </Center>
-      <Link to={`${route.fullPath}/payment-term`} params={params}>
-        <Tooltip label="งวดงาน/งวดเงิน">
-          <Center>
-            <Box bg="gray.3" px="md" py="xs" m="xs">
-              <IconAntennaBars3 />
-            </Box>
-          </Center>
-        </Tooltip>
-      </Link>
-      <Link to={`${route.fullPath}/contract-approval`} params={params}>
-        <Tooltip label="ทำสัญญา">
-          <Center>
-            <Box bg="gray.3" px="md" py="xs" m="xs">
-              <IconContract />
-            </Box>
-          </Center>
-        </Tooltip>
-      </Link>
+      <Menu
+        position="right-start"
+        trigger="click-hover"
+        closeOnItemClick={false}
+      >
+        <Menu.Target>
+          <Tooltip label="งวดงาน/งวดเงิน">
+            <Center>
+              <Box
+                bg="gray.3"
+                px="md"
+                py="xs"
+                m="xs"
+                component={Link}
+                to={`${route.fullPath}/payment-term`}
+                params={params}
+              >
+                <IconAntennaBars3 />
+              </Box>
+            </Center>
+          </Tooltip>
+        </Menu.Target>
+      </Menu>
+      <Menu
+        position="right-start"
+        trigger="click-hover"
+        closeOnItemClick={false}
+      >
+        <Menu.Target>
+          <Tooltip label="ทำสัญญา">
+            <Center>
+              <Box
+                bg="gray.3"
+                px="md"
+                py="xs"
+                m="xs"
+                component={Link}
+                to={`${route.fullPath}/contract-approval`}
+                params={params}
+              >
+                <IconContract />
+              </Box>
+            </Center>
+          </Tooltip>
+        </Menu.Target>
+      </Menu>
       <hr />
       <Center>
         <Box>เบิกเงิน</Box>
       </Center>
-      <Link to={`${route.fullPath}/withdraw`} params={params}>
-        <Tooltip label="เบิกเงิน">
-          <Center>
-            <Box bg="gray.3" px="md" py="xs" m="xs">
-              <IconCoinBitcoin />
-            </Box>
-          </Center>
-        </Tooltip>
-      </Link>
+      <Menu
+        position="right-start"
+        trigger="click-hover"
+        closeOnItemClick={false}
+      >
+        <Menu.Target>
+          <Tooltip label="เบิกเงิน">
+            <Center>
+              <Box
+                bg="gray.3"
+                px="md"
+                py="xs"
+                m="xs"
+                component={Link}
+                to={`${route.fullPath}/withdraw`}
+                params={params}
+              >
+                <IconCoinBitcoin />
+              </Box>
+            </Center>
+          </Tooltip>
+        </Menu.Target>
+      </Menu>
     </>
   )
 }

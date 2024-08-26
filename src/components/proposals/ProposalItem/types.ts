@@ -43,6 +43,6 @@ export type ProposalItemFieldCode =
 export type ProposalItemFieldType = {
   code: ProposalItemFieldCode
   label: JSX.Element
-  comp: (item: ProposalItemType) => JSX.Element
+  comp: (item: ProposalItemType, hasPermissions: string[]) => JSX.Element
   inActive?: boolean
 }
