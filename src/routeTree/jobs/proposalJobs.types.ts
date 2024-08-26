@@ -1,7 +1,7 @@
 import {
   ProposalItemFieldCode,
   ProposalItemFieldType,
-} from "@/components/proposals/types"
+} from "@/components/proposals/ProposalItem/types"
 
 export type JobPath =
   | "screening"
