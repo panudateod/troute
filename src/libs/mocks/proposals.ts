@@ -18,3 +18,7 @@ export function getProposals() {
 
   return mockProposals
 }
+
+export function getProposalById(id: number) {
+  return getProposals().find((proposal) => proposal.id === id)
+}
