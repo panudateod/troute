@@ -3,7 +3,7 @@ import {
   IconCurrencyBaht,
   IconDashboard,
   IconFileStack,
-  IconList,
+  IconNotes,
 } from "@tabler/icons-react"
 import { Link, Route } from "@tanstack/react-router"
 
@@ -31,7 +31,7 @@ export default function Nav({ route }: Props) {
         <Tooltip label="ข้อเสนอฯ/คำรับรอง">
           <Center>
             <Box bg="gray.3" px="md" py="xs" m="xs">
-              <IconList />
+              <IconNotes />
             </Box>
           </Center>
         </Tooltip>

@@ -12,7 +12,7 @@ export type ProposalItemType = {
 }
 
 export type ProposalItemFieldCode =
-  | "|" // spliter field
+  // | "|" // spliter field
   | "tor"
   | "submissionUpdatedAt"
   | "screeningStatus"
@@ -26,13 +26,16 @@ export type ProposalItemFieldCode =
   | "financeStatus"
   | "financeUpdatedAt"
   | "contractStatus"
+  | "contractDuration"
   | "contractUpdatedAt"
+  | "budget"
   | "paymentTerm"
   | "paymentTermCompletedAt"
   | "contractCodeApproval"
   | "directorApproval"
   | "secretaryApproval"
   | "executiveApproval"
+  | "myApproval" // magic field for current user, combine/switch with directorApproval, secretaryApproval, executiveApproval
   | "contractGenerate"
   | "contractDocument"
   | "bankAccount"

@@ -104,6 +104,23 @@ export const definationFields: ProposalItemFieldType[] = [
     ), // import from another file
   },
   {
+    code: "contractDuration",
+    label: <>ระยะเวลาโครงการ</>,
+    comp: () => (
+      <>
+        <div>
+          <strong>12 เดือน</strong>
+        </div>
+        <div>2 ก.ย. 2564 - 2 ก.พ. 2565</div>
+      </>
+    ), // import from another file
+  },
+  {
+    code: "budget",
+    label: <>งบประมาณ (บาท)</>,
+    comp: () => <>12,000,000</>, // import from another file
+  },
+  {
     code: "paymentTerm",
     label: <>งวดงาน/งวดเงิน</>,
     comp: () => (
@@ -152,6 +169,17 @@ export const definationFields: ProposalItemFieldType[] = [
       <>
         <Button component={Link} to={"#"}>
           พิจารณา
+        </Button>
+      </>
+    ), // import from another file
+  },
+  {
+    code: "myApproval",
+    label: <>การอนุมัติของฉัน</>,
+    comp: () => (
+      <>
+        <Button component={Link} to={"#"}>
+          พิจารณา เห็นชอบ/อนุมัติ
         </Button>
       </>
     ), // import from another file

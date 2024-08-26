@@ -2,7 +2,19 @@ import {
   definationFields,
   definationFieldsMap,
 } from "@/components/proposals/ProposalItem/fields"
+import { ProposalItemFieldCode } from "@/components/proposals/ProposalItem/types"
 import { DefinitionJobType, ProposalJobType } from "./proposalJobs.types"
+
+const contractFields: ProposalItemFieldCode[] = [
+  "contractCodeApproval",
+  "directorApproval",
+  "secretaryApproval",
+  "executiveApproval",
+  "contractGenerate",
+  "contractDocument",
+  // "|",  TODO: spliter field
+  "bankAccount",
+]
 
 const definitionJobs: DefinitionJobType[] = [
   {
@@ -31,23 +43,26 @@ const definitionJobs: DefinitionJobType[] = [
       "contentStatus",
       "financeStatus",
       "contractStatus",
-      "|",
+      // "|",  TODO: spliter field
       "paymentTerm",
     ],
     majorFields: ["contractStatus"],
   },
   {
     path: "contract",
-    fields: [
-      "contractCodeApproval",
-      "directorApproval",
-      "secretaryApproval",
-      "executiveApproval",
-      "contractGenerate",
-      "contractDocument",
-      "|",
-      "bankAccount",
-    ],
+    fields: contractFields,
+  },
+  {
+    path: "contract-ready",
+    fields: contractFields,
+  },
+  {
+    path: "contract-approval",
+    fields: ["tor", "contractDuration", "budget", "myApproval"],
+  },
+  {
+    path: "contract-approved",
+    fields: contractFields,
   },
 ]
 

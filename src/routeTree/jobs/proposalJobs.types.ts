@@ -11,8 +11,8 @@ export type JobPath =
   | "document-follow-up"
   | "contract"
   | "contract-ready"
+  | "contract-approval"
   | "contract-approved"
-  | "approval"
 
 export type DefinitionJobType = {
   path: JobPath

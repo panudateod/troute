@@ -1,7 +1,15 @@
-import { AppShell, Box, Overlay } from "@mantine/core"
+import { AppShell, Box, Center, Menu, Tooltip } from "@mantine/core"
 import "@mantine/core/styles.css"
+import {
+  IconContract,
+  IconFolderCheck,
+  IconHome,
+  IconNotes,
+  IconReportAnalytics,
+  IconRosetteDiscountCheck,
+  IconSettings,
+} from "@tabler/icons-react"
 import { createRoute, Link, Outlet, Route } from "@tanstack/react-router"
-import { useState } from "react"
 
 export default function DepartmentLayout(parentRoute: Route) {
   const layoutRoute = createRoute({
@@ -11,11 +19,6 @@ export default function DepartmentLayout(parentRoute: Route) {
   })
 
   function Comp() {
-    const [submenuOpen, setSubmenuOpen] = useState({
-      screening: false,
-      assessment: false,
-    })
-
     const { departmentId } = layoutRoute.useParams()
 
     return (
@@ -28,71 +31,214 @@ export default function DepartmentLayout(parentRoute: Route) {
           }}
         >
           <AppShell.Navbar>
+            <Tooltip label="หน้าแรก">
+              <Center>
+                <Box
+                  component={Link}
+                  bg="gray.3"
+                  px="md"
+                  py="xs"
+                  m="xs"
+                  to={`/d/${departmentId}`}
+                >
+                  <IconHome />
+                </Box>
+              </Center>
+            </Tooltip>
+            <hr />
             <div
               className="department-required"
               style={{ position: "relative" }}
             >
-              <Box bg="blue.3" p="md" mb="xs">
-                TORs
-              </Box>
-              <hr />
-              <Box bg="blue.3" p="md" mb="xs">
-                <Link to={`/d/${departmentId}/proposals`}>Proposals [all]</Link>
-              </Box>
-              <Box bg="blue.3" p="md" mb="xs">
-                <Link
-                  to={`/d/${departmentId}/proposals/screening`}
-                  onClick={() =>
-                    setSubmenuOpen({
-                      ...submenuOpen,
-                      screening: !submenuOpen.screening,
-                    })
-                  }
-                >
-                  Proposals [screening]
-                </Link>
-              </Box>
-              {submenuOpen.screening && (
-                <Box bg="blue.3" p="md" mb="xs">
-                  - screening sub
-                </Box>
-              )}
-              <Box bg="blue.3" p="md" mb="xs">
-                <Link
-                  to={`/d/${departmentId}/proposals/assessment`}
-                  onClick={() =>
-                    setSubmenuOpen({
-                      ...submenuOpen,
-                      assessment: !submenuOpen.assessment,
-                    })
-                  }
-                >
-                  Proposals [assessment]
-                </Link>
-              </Box>
-              {submenuOpen.assessment && (
-                <Box bg="blue.3" p="md" mb="xs">
-                  - assessment sub
-                </Box>
-              )}
-              <Box bg="blue.3" p="md" mb="xs">
-                Proposals [improvement]
-              </Box>
-              <hr />
-              <Box bg="blue.3" p="md" mb="xs">
-                Project [all]
-              </Box>
-              {!departmentId && (
-                <Overlay color="#FFF" backgroundOpacity={0.5} />
-              )}
+              <Menu
+                position="right-start"
+                trigger="click-hover"
+                closeOnItemClick={false}
+              >
+                <Menu.Target>
+                  <Tooltip label="TOR">
+                    <Center>
+                      <Box component={Link} bg="gray.3" px="md" py="xs" m="xs">
+                        <IconFolderCheck />
+                      </Box>
+                    </Center>
+                  </Tooltip>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Link to={`/d/${departmentId}/term-of-references`}>
+                    <Menu.Item>ทั้งหมด</Menu.Item>
+                  </Link>
+                </Menu.Dropdown>
+              </Menu>
+              <Menu
+                position="right-start"
+                trigger="click-hover"
+                closeOnItemClick={false}
+              >
+                <Menu.Target>
+                  <Tooltip label="ข้อเสนอฯ">
+                    <Center>
+                      <Box component={Link} bg="gray.3" px="md" py="xs" m="xs">
+                        <IconNotes />
+                      </Box>
+                    </Center>
+                  </Tooltip>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/screening`}
+                  >
+                    คัดกรอง
+                  </Menu.Item>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/assessment`}
+                  >
+                    กลั่นกรอง
+                  </Menu.Item>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/improvement`}
+                  >
+                    ปรับปรุง
+                  </Menu.Item>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/document-follow-up`}
+                  >
+                    ปรับปรุง
+                  </Menu.Item>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals`}
+                  >
+                    ทั้งหมด
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+
+              <Menu
+                position="right-start"
+                trigger="click-hover"
+                closeOnItemClick={false}
+              >
+                <Menu.Target>
+                  <Tooltip label="สัญญา">
+                    <Center>
+                      <Box component={Link} bg="gray.3" px="md" py="xs" m="xs">
+                        <IconContract />
+                      </Box>
+                    </Center>
+                  </Tooltip>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/payment-term`}
+                  >
+                    กำหนดงวดงาน/งวดเงิน
+                  </Menu.Item>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/contract-ready`}
+                  >
+                    ทำสัญญา
+                  </Menu.Item>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/contract-approval`}
+                  >
+                    อนุมัติ/เห็นชอบสัญญา และเบิกงวด 1
+                  </Menu.Item>
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/contract-approved`}
+                  >
+                    พิมพ์สัญญา/แนบสัญญา
+                  </Menu.Item>
+
+                  <Menu.Item
+                    component={Link}
+                    to={`/d/${departmentId}/proposals/contract`}
+                  >
+                    ทั้งหมด
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+
+              <Menu
+                position="right-start"
+                trigger="click-hover"
+                closeOnItemClick={false}
+              >
+                <Menu.Target>
+                  <Tooltip label="รายงาน">
+                    <Center>
+                      <Box component={Link} bg="gray.3" px="md" py="xs" m="xs">
+                        <IconReportAnalytics />
+                      </Box>
+                    </Center>
+                  </Tooltip>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item component={Link} to={`#`}>
+                    ...
+                  </Menu.Item>
+                  <Menu.Item component={Link} to={`#`}>
+                    ...
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+
+              <Menu
+                position="right-start"
+                trigger="click-hover"
+                closeOnItemClick={false}
+              >
+                <Menu.Target>
+                  <Tooltip label="เบิกจ่าย">
+                    <Center>
+                      <Box component={Link} bg="gray.3" px="md" py="xs" m="xs">
+                        <IconRosetteDiscountCheck />
+                      </Box>
+                    </Center>
+                  </Tooltip>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item component={Link} to={`#`}>
+                    ...
+                  </Menu.Item>
+                  <Menu.Item component={Link} to={`#`}>
+                    ...
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
             </div>
             <hr />
-            <Box bg="blue.3" p="md" mb="xs">
-              <Link to="/d">Departments</Link>
-            </Box>
-            <Box bg="blue.3" p="md" mb="xs">
-              <Link to="/p">Switch to Partner Mode</Link>
-            </Box>
+            <Menu
+              position="right-start"
+              trigger="click-hover"
+              closeOnItemClick={false}
+            >
+              <Menu.Target>
+                <Tooltip label="ตั้งค่า">
+                  <Center>
+                    <Box component={Link} bg="gray.3" px="md" py="xs" m="xs">
+                      <IconSettings />
+                    </Box>
+                  </Center>
+                </Tooltip>
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Item component={Link} to={`/d`}>
+                  เลือกสำนัก
+                </Menu.Item>
+                <Menu.Item component={Link} to={`/p`}>
+                  ดูในมุมภาคี
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
           </AppShell.Navbar>
           <AppShell.Main>
             <Outlet />
