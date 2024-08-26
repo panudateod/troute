@@ -1,4 +1,4 @@
-import App from "@/App"
+import App from "@/components/App"
 import DepartmentList from "@/components/departments/DepartmentList"
 import DepartmentOverview from "@/components/departments/DepartmentOverview"
 import DepartmentSettings from "@/components/departments/DepartmentSettings"
@@ -8,7 +8,7 @@ import ProposalDetail from "@/components/proposals/ProposalDetail"
 import ProposalJobList from "@/components/proposals/ProposalJobList"
 import ProposalList from "@/components/proposals/ProposalList"
 import "@mantine/core/styles.css"
-import { createRoute, Route } from "@tanstack/react-router"
+import { createRoute, Link, Route } from "@tanstack/react-router"
 import { proposalJobs } from "./jobs/proposalJobs"
 
 const rootRoute = App()
@@ -20,6 +20,7 @@ const indexRoute = createRoute({
     return (
       <div className="p-2">
         <h3>Welcome Home!</h3>
+        <Link to={"/d"}>สำนัก</Link>
       </div>
     )
   },

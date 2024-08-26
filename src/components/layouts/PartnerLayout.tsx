@@ -1,7 +1,6 @@
 import { AppShell, Box } from "@mantine/core"
 import "@mantine/core/styles.css"
 import { createRoute, Link, Outlet, Route } from "@tanstack/react-router"
-import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 
 export default function PartnerLayout(parentRoute: Route) {
   const layoutRoute = createRoute({
@@ -33,7 +32,6 @@ export default function PartnerLayout(parentRoute: Route) {
             <Outlet />
           </AppShell.Main>
         </AppShell>
-        <TanStackRouterDevtools />
       </>
     )
   }

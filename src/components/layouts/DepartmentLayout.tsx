@@ -1,7 +1,6 @@
 import { AppShell, Box, Overlay } from "@mantine/core"
 import "@mantine/core/styles.css"
 import { createRoute, Link, Outlet, Route } from "@tanstack/react-router"
-import { TanStackRouterDevtools } from "@tanstack/router-devtools"
 import { useState } from "react"
 
 export default function DepartmentLayout(parentRoute: Route) {
@@ -99,7 +98,6 @@ export default function DepartmentLayout(parentRoute: Route) {
             <Outlet />
           </AppShell.Main>
         </AppShell>
-        <TanStackRouterDevtools />
       </>
     )
   }
