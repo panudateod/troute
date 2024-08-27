@@ -27,7 +27,7 @@ export default function ProposalItem(props: Props) {
         <Link to={getItemUrl(props)}>{proposal.name}</Link>
       </Table.Td>
       {job.fields.map((field) => (
-        <Table.Td key={field.code}>{field.comp(item)}</Table.Td>
+        <Table.Td key={field.code}>{field.comp(item, [])}</Table.Td>
       ))}
     </Table.Tr>
   )

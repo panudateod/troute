@@ -9,14 +9,7 @@ import {
   IconRosetteDiscountCheck,
   IconSettings,
 } from "@tabler/icons-react"
-import {
-  createRoute,
-  Link,
-  Outlet,
-  Route,
-  useLocation,
-} from "@tanstack/react-router"
-import { AnimatePresence, motion } from "framer-motion"
+import { createRoute, Link, Outlet, Route } from "@tanstack/react-router"
 
 export default function DepartmentLayout(parentRoute: Route) {
   const layoutRoute = createRoute({
@@ -28,16 +21,13 @@ export default function DepartmentLayout(parentRoute: Route) {
   function Comp() {
     const { departmentId } = layoutRoute.useParams()
 
-    // const matches = useMatches()
-    // const match = useMatch({ strict: false })
-    // const nextMatchIndex = matches.findIndex((d) => d.id === match.id) + 1
-    // const nextMatch = matches[nextMatchIndex]
-    const location = useLocation()
+    // const location = useLocation()
 
     return (
       <>
         <AppShell
           layout="alt"
+          transitionDuration={0}
           navbar={{
             width: 100,
             breakpoint: "sm",
@@ -254,17 +244,7 @@ export default function DepartmentLayout(parentRoute: Route) {
             </Menu>
           </AppShell.Navbar>
           <AppShell.Main>
-            <AnimatePresence mode="popLayout">
-              <motion.div
-                key={location.pathname}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 5 }}
-                // exit={{ opacity: 1 }}
-              >
-                <Outlet />
-              </motion.div>
-            </AnimatePresence>
+            <Outlet />
           </AppShell.Main>
         </AppShell>
       </>
