@@ -43,6 +43,8 @@ type Props = {
   proposal: ProposalItemType // TODO: Full ProposalType
 }
 
+const navWidth = 100
+
 export default function App({
   parentRoute,
   proposalNav,
@@ -56,8 +58,14 @@ export default function App({
   const params = parentRoute.useParams()
   const navigate = useNavigate()
   const [noTransitionOpened, setNoTransitionOpened] = useState(false)
+  const [transformFinished, setTransformFinished] = useState(false)
   useEffect(() => {
     setNoTransitionOpened(true)
+  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      setTransformFinished(true)
+    }, 800)
   }, [])
 
   return (
@@ -72,13 +80,17 @@ export default function App({
       }}
     >
       <Modal.Overlay />
-      <Modal.Content>
+      <Modal.Content
+        className={
+          transformFinished && noTransitionOpened ? "transform-finished" : ""
+        }
+      >
         <Modal.Body>
           <AppShell
             layout="alt"
             transitionDuration={0}
             navbar={{
-              width: 100,
+              width: navWidth,
               breakpoint: "sm",
             }}
             padding="md"
@@ -116,7 +128,9 @@ export default function App({
               </Flex>
             </AppShell.Header>
             <AppShell.Main>
+              {/* <div style={{ maxHeight: "95vh", overflowY: "auto" }}> */}
               <Outlet />
+              {/* </div> */}
             </AppShell.Main>
           </AppShell>
         </Modal.Body>

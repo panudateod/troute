@@ -11,6 +11,8 @@ import {
 } from "@tabler/icons-react"
 import { createRoute, Link, Outlet, Route } from "@tanstack/react-router"
 
+const navWidth = 100
+
 export default function DepartmentLayout(parentRoute: Route) {
   const layoutRoute = createRoute({
     getParentRoute: () => parentRoute,
@@ -29,7 +31,7 @@ export default function DepartmentLayout(parentRoute: Route) {
           layout="alt"
           transitionDuration={0}
           navbar={{
-            width: 100,
+            width: navWidth,
             breakpoint: "sm",
           }}
         >
@@ -243,7 +245,7 @@ export default function DepartmentLayout(parentRoute: Route) {
               </Menu.Dropdown>
             </Menu>
           </AppShell.Navbar>
-          <AppShell.Main>
+          <AppShell.Main pl={navWidth} pt={0} pr={0} pb={0}>
             <Outlet />
           </AppShell.Main>
         </AppShell>

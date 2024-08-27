@@ -1,3 +1,4 @@
+import "@/styles.css"
 import "@mantine/core/styles.css"
 import { createRootRoute, Outlet, Route } from "@tanstack/react-router"
 import { TanStackRouterDevtools } from "@tanstack/router-devtools"

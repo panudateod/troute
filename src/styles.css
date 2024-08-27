@@ -1,6 +1,10 @@
 html, body, #root {
   height: 100%;
-  display: flex;
+}
+
+
+.mantine-Modal-content.transform-finished {
+  transform: none !important;
 }
 
 .inner-inline * {
