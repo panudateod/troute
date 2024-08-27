@@ -74,7 +74,7 @@ export default function App({
       onClose={() => {}}
       fullScreen
       transitionProps={{
-        transition: "pop",
+        transition: "slide-left",
         duration: 1000,
         timingFunction: "easeIn",
       }}
@@ -94,7 +94,7 @@ export default function App({
               breakpoint: "sm",
             }}
             padding="md"
-            bg="white"
+            left={5}
           >
             <AppShell.Navbar>
               {proposalNav}
