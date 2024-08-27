@@ -1,4 +1,4 @@
-import { AppShell, Box, Flex } from "@mantine/core"
+import { AppShell, Box, Flex, Modal } from "@mantine/core"
 import { IconSquareRoundedX } from "@tabler/icons-react"
 import {
   Link,
@@ -7,8 +7,8 @@ import {
   useLocation,
   useNavigate,
 } from "@tanstack/react-router"
-import { AnimatePresence, motion, Variants } from "framer-motion"
-import { useState } from "react"
+import { Variants } from "framer-motion"
+import { useEffect, useState } from "react"
 import { ProposalItemType } from "../ProposalItem/types"
 
 const closeDuration = 300
@@ -55,18 +55,25 @@ export default function App({
   const location = useLocation()
   const params = parentRoute.useParams()
   const navigate = useNavigate()
-  const [closing, setClosing] = useState(false)
+  const [noTransitionOpened, setNoTransitionOpened] = useState(false)
+  useEffect(() => {
+    setNoTransitionOpened(true)
+  }, [])
+
   return (
-    <AnimatePresence>
-      {closing ? null : (
-        <motion.div
-          // ref={ref}
-          key={location.pathname}
-          variants={dropIn}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
+    <Modal.Root
+      opened={noTransitionOpened}
+      onClose={() => {}}
+      fullScreen
+      transitionProps={{
+        transition: "pop",
+        duration: 1000,
+        timingFunction: "easeIn",
+      }}
+    >
+      <Modal.Overlay />
+      <Modal.Content>
+        <Modal.Body>
           <AppShell
             layout="alt"
             transitionDuration={0}
@@ -94,7 +101,7 @@ export default function App({
                     resetScroll={false}
                     onClick={(e) => {
                       e.preventDefault()
-                      setClosing(true)
+                      setNoTransitionOpened(false)
                       setTimeout(() => {
                         navigate({
                           to: parentRoute.fullPath,
@@ -112,8 +119,8 @@ export default function App({
               <Outlet />
             </AppShell.Main>
           </AppShell>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </Modal.Body>
+      </Modal.Content>
+    </Modal.Root>
   )
 }

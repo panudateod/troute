@@ -3,8 +3,6 @@ import DepartmentList from "@/components/departments/DepartmentList"
 import DepartmentOverview from "@/components/departments/DepartmentOverview"
 import DepartmentSettings from "@/components/departments/DepartmentSettings"
 import DepartmentLayout from "@/components/layouts/DepartmentLayout"
-import ContractProposalDetail from "@/components/proposals/ContractProposalDetail"
-import ProposalDetail from "@/components/proposals/ProposalDetail"
 import ProposalJobList from "@/components/proposals/ProposalJobList"
 import ProposalList from "@/components/proposals/ProposalList"
 import "@mantine/core/styles.css"
@@ -44,11 +42,7 @@ const proposalIndexRoute = createRoute({
   getParentRoute: () => d,
   path: "d/$departmentId/proposals",
 }) as unknown as Route
-proposalIndexRoute.addChildren([
-  ProposalList(proposalIndexRoute),
-  ProposalDetail(proposalIndexRoute),
-  ContractProposalDetail(proposalIndexRoute),
-])
+proposalIndexRoute.addChildren([ProposalList(proposalIndexRoute)])
 
 // Proposals by jobs
 const proposalRoutes: Route[] = proposalJobs.map((job) => {
@@ -58,8 +52,6 @@ const proposalRoutes: Route[] = proposalJobs.map((job) => {
   }) as unknown as Route
   jobRoute.addChildren([
     ProposalJobList(jobRoute, job), // use ProposalJobList instead of ProposalList
-    ProposalDetail(jobRoute),
-    ContractProposalDetail(jobRoute),
   ])
 
   return jobRoute

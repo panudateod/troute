@@ -15,12 +15,14 @@ export type JobPath =
   | "contract-approved"
 
 export type DefinitionJobType = {
+  title: string
   path: JobPath
   fields: ProposalItemFieldCode[]
   majorFields?: ProposalItemFieldCode[]
 }
 
 export type ProposalJobType = {
+  title: string
   path?: JobPath
   fields: ProposalItemFieldType[]
   majorFields?: ProposalItemFieldCode[]

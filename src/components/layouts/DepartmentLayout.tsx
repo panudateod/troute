@@ -110,7 +110,7 @@ export default function DepartmentLayout(parentRoute: Route) {
                     component={Link}
                     to={`/d/${departmentId}/proposals/document-follow-up`}
                   >
-                    ปรับปรุง
+                    ตรวจเอกสาร
                   </Menu.Item>
                   <Menu.Item
                     component={Link}

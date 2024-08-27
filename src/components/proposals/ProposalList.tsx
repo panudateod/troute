@@ -1,7 +1,9 @@
 import { getProposals } from "@/libs/mocks/proposals"
 import { proposalAllJob } from "@/routeTree/jobs/proposalJobs"
 import { Table } from "@mantine/core"
-import { createRoute, Route } from "@tanstack/react-router"
+import { createRoute, Outlet, Route } from "@tanstack/react-router"
+import ContractProposalDetail from "./ContractProposalDetail"
+import ProposalDetail from "./ProposalDetail"
 import ProposalItem from "./ProposalItem"
 
 export default function ProposalList(parentRoute: Route) {
@@ -13,6 +15,11 @@ export default function ProposalList(parentRoute: Route) {
     component: Comp,
   })
 
+  listRoute.addChildren([
+    ProposalDetail(listRoute),
+    ContractProposalDetail(listRoute),
+  ])
+
   function Comp() {
     const proposals = getProposals()
     const job = proposalAllJob
@@ -21,27 +28,31 @@ export default function ProposalList(parentRoute: Route) {
 
     return (
       <>
-        <h1>Header, filter by jobs</h1>
-        <Table>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th>ชื่อโครงการ</Table.Th>
-              {headerFields.map((field) => (
-                <Table.Th key={field.code}>{field.label}</Table.Th>
+        <div className="content-list">
+          <h1>Header, filter by jobs</h1>
+          <Table>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>ชื่อโครงการ</Table.Th>
+                {headerFields.map((field) => (
+                  <Table.Th key={field.code}>{field.label}</Table.Th>
+                ))}
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {proposals.map((item) => (
+                <ProposalItem
+                  key={item.id}
+                  item={item}
+                  departmentId={departmentId}
+                  job={job}
+                />
               ))}
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {proposals.map((item) => (
-              <ProposalItem
-                key={item.id}
-                item={item}
-                departmentId={departmentId}
-                job={job}
-              />
-            ))}
-          </Table.Tbody>
-        </Table>
+            </Table.Tbody>
+          </Table>
+        </div>
+
+        <Outlet />
       </>
     )
   }
